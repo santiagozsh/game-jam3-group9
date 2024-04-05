@@ -44,6 +44,7 @@ public class ControlleGamePLayUi : MonoBehaviour
     void ReiniciarJuego ()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale=1.0F;
     }
     void volverMenu()
     {

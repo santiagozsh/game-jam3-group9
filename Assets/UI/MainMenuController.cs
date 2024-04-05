@@ -26,7 +26,7 @@ public class MainMenuController : MonoBehaviour
     }
     private void empezarJuego()
     {
-        SceneManager.LoadScene("SceneTestUiGamepay");
+        SceneManager.LoadScene("MainScene");
     }
     
 }
