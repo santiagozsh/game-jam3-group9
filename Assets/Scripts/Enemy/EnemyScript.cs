@@ -6,10 +6,10 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
     public Transform target;
-    public GameObject BulletPrefab;
+    public GameObject bulletPrefab;
 
-    private int Health = 3;
-    private float LastShoot;
+    private int health = 3;
+    private float lastShoot;
     void Start()
     {
 
@@ -48,10 +48,10 @@ public class EnemyScript : MonoBehaviour
 
         float distance = Mathf.Abs(target.position.x - transform.position.x);
 
-        if (distance < 5.0f && Time.time > LastShoot + 2f)
+        if (distance < 5.0f && Time.time > lastShoot + 2f)
         {
             Shoot();
-            LastShoot = Time.time;
+            lastShoot = Time.time;
         }
     }
 
@@ -64,15 +64,16 @@ public class EnemyScript : MonoBehaviour
         float bulletRotationZ = Mathf.Sign(transform.localScale.x) > 0 ? 0f : 180f;
 
         // Instanciar el proyectil con un pequeño ajuste de posición
-        GameObject bullet = Instantiate(BulletPrefab, transform.position + direction * 0.2f, Quaternion.Euler(0f, 0f, bulletRotationZ));
+        GameObject bullet = Instantiate(bulletPrefab, transform.position + direction * 0.2f, Quaternion.Euler(0f, 0f, bulletRotationZ));
 
         // Obtener el script del proyectil y establecer su dirección
         bullet.GetComponent<BulletScript>().SetDirection(direction);
     }
+
     public void Hit()
     {
-        Health -= 1;
-        if (Health == 0) Destroy(gameObject);
+        health -= 1;
+        if (health == 0) Destroy(gameObject);
     }
 
 }

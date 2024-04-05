@@ -160,3 +160,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 1
   Sound: {fileID: 0}
+  LifeTime: 3

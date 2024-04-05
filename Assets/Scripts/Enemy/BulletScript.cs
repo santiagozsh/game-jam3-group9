@@ -6,6 +6,7 @@ public class BulletScript : MonoBehaviour
 {
     public float Speed;
     public AudioClip Sound;
+    public float LifeTime = 5f; // Tiempo de vida de la bala si no colisiona con nada
 
     private Rigidbody2D Rigidbody2D;
     private Vector3 Direction;
@@ -14,6 +15,9 @@ public class BulletScript : MonoBehaviour
     {
         Rigidbody2D = GetComponent<Rigidbody2D>();
         Camera.main.GetComponent<AudioSource>().PlayOneShot(Sound);
+
+        // Inicia el temporizador para destruir la bala si no colisiona con nada
+        StartCoroutine(DestroyAfterDelay());
     }
 
     private void FixedUpdate()
@@ -43,6 +47,12 @@ public class BulletScript : MonoBehaviour
         {
             john.Hit();
         }
+        DestroyBullet();
+    }
+
+    private IEnumerator DestroyAfterDelay()
+    {
+        yield return new WaitForSeconds(LifeTime);
         DestroyBullet();
     }
 }
