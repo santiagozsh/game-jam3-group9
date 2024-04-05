@@ -138,7 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 8359326248294614455, guid: 55e98c257a3754c4fbb6232d89349740, type: 3}
+  animator: {fileID: 0}
 --- !u!95 &3112070132140177071
 Animator:
   serializedVersion: 5

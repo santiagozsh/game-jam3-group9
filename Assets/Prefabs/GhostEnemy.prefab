@@ -159,4 +159,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 4935341716791640372, guid: 0e95fc53a8ff63b4bae2b775efd9bff2, type: 3}
+  animator: {fileID: 0}

@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 1212855229, guid: 81b3f0b1e862a17468d5a8ff34544405, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -139,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   bulletPrefab: {fileID: 7758849731016032185, guid: 141f1f4265b06dd4e90899b1899866e4, type: 3}
+  animator: {fileID: 0}
 --- !u!95 &2340503720369804040
 Animator:
   serializedVersion: 5
