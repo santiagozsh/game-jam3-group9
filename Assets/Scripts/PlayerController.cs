@@ -22,34 +22,34 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
+        //horizontalInput = Input.GetAxis("Horizontal");
 
-        transform.Translate(Vector2.right * horizontalInput * Time.deltaTime *20);
+        //transform.Translate(Vector2.right * horizontalInput * Time.deltaTime *20);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround == true && !gameOver)
-        {
+        //if (Input.GetKeyDown(KeyCode.Space) && isOnGround == true && !gameOver)
+        //{
 
-            playerRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            isOnGround = false;
-            //playerAnim.SetTrigger("Jump_trig");
-            //dirtParticle.Stop();
-            //playerAudio.PlayOneShot(jumpSound, 1.0f);
-        }
+        //    playerRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        //    isOnGround = false;
+        //    //playerAnim.SetTrigger("Jump_trig");
+        //    //dirtParticle.Stop();
+        //    //playerAudio.PlayOneShot(jumpSound, 1.0f);
+        //}
     }
 
-  
 
-    private void OnCollisionEnter2D(Collision2D collision)
+ 
+    private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isOnGround = true;
-        }
-        else if (collision.gameObject.CompareTag("PowerUp"))
+        //if (collision.gameObject.CompareTag("Ground"))
+        //{
+        //    isOnGround = true;
+        //}
+        if (other.gameObject.CompareTag("PowerUp"))
         {
             powerUp = true;
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
             StartCoroutine(PowerCountdownRoutine());
         }
     }

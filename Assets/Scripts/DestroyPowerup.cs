@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DestroyPowerup : MonoBehaviour
 {
-    [SerializeField] private float timeLifePowerUp = 7;
+    [SerializeField] private float timeLifePowerUp = 15;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,7 +12,7 @@ public class DestroyPowerup : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         StartCoroutine(PowerCountdownRoutine(timeLifePowerUp));
     }
