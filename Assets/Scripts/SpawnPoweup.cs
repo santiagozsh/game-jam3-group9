@@ -4,8 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnPoweup : MonoBehaviour
-{
-    
+{    
     public GameObject[] powerUps;
     private PlayerController playerController;
     private float startDelay = 10;
@@ -37,10 +36,5 @@ public class SpawnPoweup : MonoBehaviour
         offsetY = Random.Range(0, 4);
         pos = Random.Range(0, powerUps.Length);
         Instantiate(powerUps[pos], new Vector2(posPlayerX + offsetX, posPlayerY + offsetY), powerUps[0].transform.rotation);
-    }
-
-    
-
-
-
+    } 
 }

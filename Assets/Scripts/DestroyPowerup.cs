@@ -15,6 +15,8 @@ public class DestroyPowerup : MonoBehaviour
     void FixedUpdate()
     {
         StartCoroutine(PowerCountdownRoutine(timeLifePowerUp));
+
+        
     }
 
     IEnumerator PowerCountdownRoutine(float timePowerUp)
@@ -22,6 +24,22 @@ public class DestroyPowerup : MonoBehaviour
        yield return new WaitForSeconds(timePowerUp);
        Debug.Log("Destruye" + gameObject.name);
        Destroy(gameObject);
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+
+        //if (collision.gameObject.CompareTag("Ground"))
+        //{
+        //    isOnGround = true;
+        //}
+        if (other.gameObject.layer==LayerMask.NameToLayer("Ground"))
+        {
+      
+            Destroy(gameObject);
+            
+        }
     }
 
 }

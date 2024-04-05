@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public bool gameOver = false;
     public float jumpForce;
     public bool powerUp;
+    public int countPowerUp=0;
+    [SerializeField] private int timePowerUp = 7;
 
     // Start is called before the first frame update
     void Start()
@@ -40,28 +42,19 @@ public class PlayerController : MonoBehaviour
 
  
     private void OnTriggerEnter2D(Collider2D other)
-    {
-
-        //if (collision.gameObject.CompareTag("Ground"))
-        //{
-        //    isOnGround = true;
-        //}
+    {        
         if (other.gameObject.CompareTag("PowerUp"))
         {
+            countPowerUp++;
             powerUp = true;
             Destroy(other.gameObject);
-            StartCoroutine(PowerCountdownRoutine());
+            StartCoroutine(PowerCountdownRoutine(timePowerUp));
         }
     }
 
-    IEnumerator PowerCountdownRoutine()
+    IEnumerator PowerCountdownRoutine(int timePowerUp)
     {
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(timePowerUp);
         powerUp = false;
     }
-
-
-
-
-
 }
