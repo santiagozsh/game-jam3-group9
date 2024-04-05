@@ -38,7 +38,7 @@ public class BulletScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         EnemyScript grunt = other.GetComponent<EnemyScript>();
-        PlayerMovement1 john = other.GetComponent<PlayerMovement1>();
+        Movement john = other.GetComponent<Movement>();
         if (grunt != null)
         {
             grunt.Hit();
@@ -47,7 +47,7 @@ public class BulletScript : MonoBehaviour
         {
             john.Hit();
         }
-        DestroyBullet();
+            DestroyBullet();
     }
 
     private IEnumerator DestroyAfterDelay()
