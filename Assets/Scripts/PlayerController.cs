@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public bool gameOver = false;
     public float jumpForce;
     public bool powerUp;
+    public int countPowerUp=0;
+    [SerializeField] private int timePowerUp = 7;
 
     // Start is called before the first frame update
     void Start()
@@ -22,46 +24,37 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
+        //horizontalInput = Input.GetAxis("Horizontal");
 
-        transform.Translate(Vector2.right * horizontalInput * Time.deltaTime *20);
+        //transform.Translate(Vector2.right * horizontalInput * Time.deltaTime *20);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround == true && !gameOver)
-        {
+        //if (Input.GetKeyDown(KeyCode.Space) && isOnGround == true && !gameOver)
+        //{
 
-            playerRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            isOnGround = false;
-            //playerAnim.SetTrigger("Jump_trig");
-            //dirtParticle.Stop();
-            //playerAudio.PlayOneShot(jumpSound, 1.0f);
-        }
+        //    playerRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        //    isOnGround = false;
+        //    //playerAnim.SetTrigger("Jump_trig");
+        //    //dirtParticle.Stop();
+        //    //playerAudio.PlayOneShot(jumpSound, 1.0f);
+        //}
     }
 
-  
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
-        if (collision.gameObject.CompareTag("Ground"))
+ 
+    private void OnTriggerEnter2D(Collider2D other)
+    {        
+        if (other.gameObject.CompareTag("PowerUp"))
         {
-            isOnGround = true;
-        }
-        else if (collision.gameObject.CompareTag("PowerUp"))
-        {
+            countPowerUp++;
             powerUp = true;
-            Destroy(collision.gameObject);
-            StartCoroutine(PowerCountdownRoutine());
+            Destroy(other.gameObject);
+            StartCoroutine(PowerCountdownRoutine(timePowerUp));
         }
     }
 
-    IEnumerator PowerCountdownRoutine()
+    IEnumerator PowerCountdownRoutine(int timePowerUp)
     {
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(timePowerUp);
         powerUp = false;
     }
-
-
-
-
-
 }

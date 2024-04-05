@@ -4,11 +4,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnPoweup : MonoBehaviour
-{
-    
+{    
     public GameObject[] powerUps;
     private PlayerController playerController;
-    private float startDelay = 2;
+    private float startDelay = 10;
     private float repeatRate = 5;
     private float posPlayerX;
     private float posPlayerY;
@@ -19,7 +18,7 @@ public class SpawnPoweup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {       
-        playerController = GameObject.Find("RedHood").GetComponent<PlayerController>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         InvokeRepeating("SpawnPowerUp", startDelay, repeatRate);
     }
 
@@ -37,10 +36,5 @@ public class SpawnPoweup : MonoBehaviour
         offsetY = Random.Range(0, 4);
         pos = Random.Range(0, powerUps.Length);
         Instantiate(powerUps[pos], new Vector2(posPlayerX + offsetX, posPlayerY + offsetY), powerUps[0].transform.rotation);
-    }
-
-    
-
-
-
+    } 
 }
