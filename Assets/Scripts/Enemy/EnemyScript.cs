@@ -7,12 +7,13 @@ public class EnemyScript : MonoBehaviour
 {
     public Transform target;
     public GameObject bulletPrefab;
+    public Animator animator;
 
     private int health = 3;
     private float lastShoot;
     void Start()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -58,6 +59,7 @@ public class EnemyScript : MonoBehaviour
     private void Shoot()
     {
         // Dirección del proyectil basada en la escala actual del enemigo
+        animator.SetTrigger("Attack");
         Vector3 direction = new Vector3(transform.localScale.x, 0.0f, 0.0f);
 
         // Determinar la rotación en Z del proyectil basada en la dirección del enemigo en X
