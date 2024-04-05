@@ -106,9 +106,12 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //anim.SetTrigger("jump");
             if (coll.onGround)
+            {
+                anim.SetTrigger("Jump");
                 Jump(Vector2.up);
+            }
+
         }
 
         if (Input.GetButtonDown("Fire1") && !hasDashed)
@@ -145,6 +148,7 @@ public class Movement : MonoBehaviour
 
     void GroundTouch()
     {
+
         hasDashed = false;
         isDashing = false;
     }
