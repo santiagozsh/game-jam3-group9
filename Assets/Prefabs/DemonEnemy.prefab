@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6848703587103015918}
   - component: {fileID: 6848703587103015919}
   - component: {fileID: 6848703587103015916}
+  - component: {fileID: 8107870233810002062}
   m_Layer: 0
   m_Name: DemonEnemy
   m_TagString: Untagged
@@ -138,3 +139,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   bulletPrefab: {fileID: 4675486451845302879, guid: 2aeee6fb23abde742b86ca04321bb4ec, type: 3}
+  animator: {fileID: 0}
+--- !u!95 &8107870233810002062
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6848703587103015922}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e463cee233ec34344a4aaeefe368f9cc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

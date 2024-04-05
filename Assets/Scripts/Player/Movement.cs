@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -6,6 +7,7 @@ public class Movement : MonoBehaviour
     public Rigidbody2D rb;
     public SpriteRenderer sprite;
     public Animator anim;
+    private int Health = 5;
 
     public float speed = 10;
     public float jumpForce = 50;
@@ -16,6 +18,7 @@ public class Movement : MonoBehaviour
     public bool isFalling;
 
     public ParticleSystem dustParticle;
+    public GameObject bulletPrefab;
 
     private void Start()
     {
@@ -37,14 +40,18 @@ public class Movement : MonoBehaviour
             isJumping = false;
             isFalling = false;
         }
-
-        if (Input.GetKeyDown(KeyCode.Space) && coll.onGround)
+        if (Input.GetMouseButtonDown(0) && coll.onGround)
         {
-            
+            anim.SetTrigger("Attack");
+            StartCoroutine(WaitForShoot());
+        }
+
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && coll.onGround) 
+        {
             Jump(Vector2.up);
             isJumping = true;
             anim.SetBool("isJumping", isJumping);
-            isFalling = false; 
+            isFalling = false;
             anim.SetBool("isFalling", isFalling);
         }
 
@@ -83,12 +90,18 @@ public class Movement : MonoBehaviour
         }
     }
 
+    IEnumerator WaitForShoot()
+    {
+        yield return new WaitForSeconds(.5f);
+        Shoot();
+    }
+
     private void Walk(Vector2 dir)
     {
         if (!canMove)
             return;
         rb.velocity = new Vector2(dir.x * speed, rb.velocity.y);
-        
+
     }
 
     private void Jump(Vector2 dir)
@@ -96,5 +109,30 @@ public class Movement : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity += dir * jumpForce;
         dustParticle.Play();
+    }
+
+    public void Hit()
+    {
+        anim.SetTrigger("Damage");
+        Health -= 1;
+        if (Health == 0) Destroy(gameObject);
+    }
+
+    private void Shoot()
+    {
+        if (sprite.flipX)
+        {
+            Vector3 direction = new Vector3(transform.localScale.x + 4, 0.0f, 0.0f);
+            float bulletRotationZ = 180f;
+            GameObject bullet = Instantiate(bulletPrefab, transform.position + direction * 0.2f, Quaternion.Euler(0f, 0f, bulletRotationZ));
+            bullet.GetComponent<BulletScript>().SetDirection(direction);
+        }
+        if (!sprite.flipX)
+        {
+            Vector3 direction = new Vector3(transform.localScale.x - 5, 0.0f, 0.0f);
+            float bulletRotationZ = 0f;
+            GameObject bullet = Instantiate(bulletPrefab, transform.position + direction * 0.2f, Quaternion.Euler(0f, 0f, bulletRotationZ));
+            bullet.GetComponent<BulletScript>().SetDirection(direction);
+        }
     }
 }
