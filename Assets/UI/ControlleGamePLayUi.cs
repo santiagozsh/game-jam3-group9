@@ -11,6 +11,14 @@ public class ControlleGamePLayUi : MonoBehaviour
     [SerializeField]Button botonContinuar;
     [SerializeField]Button botonReiniciarjuego;
     [SerializeField]Button botonVolverMenu;
+    [SerializeField]Button botonPanelVictoriaVolverMenu;
+    [SerializeField]Button botonPanelDerroReiniciar;
+    [SerializeField]Button botonPanelComenzardeNuevo;
+    [Header("Paneles")]    
+    [SerializeField]GameObject panelVictoria;
+    [SerializeField]GameObject panelDerrota;
+
+
 
     void Start()
     {
@@ -24,8 +32,22 @@ public class ControlleGamePLayUi : MonoBehaviour
         Button botonReiniciar = botonReiniciarjuego.GetComponent<Button>();
 		botonReiniciar.onClick.AddListener(ReiniciarJuego);
 
+
+        Button elementoPanelVictoriaVolverMenu = botonPanelVictoriaVolverMenu.GetComponent<Button>();
+		elementoPanelVictoriaVolverMenu.onClick.AddListener(volverMenu);
+
+
+        Button elementobotonPanelDerroReiniciar = botonPanelDerroReiniciar.GetComponent<Button>();
+		elementobotonPanelDerroReiniciar.onClick.AddListener(ReiniciarJuego);
+        Button elementobotonPanelComenzardeNuevo = botonPanelComenzardeNuevo.GetComponent<Button>();
+		elementobotonPanelComenzardeNuevo.onClick.AddListener(volverMenu);
+
+        
+
         Button botonMenu = botonVolverMenu.GetComponent<Button>();
 		botonMenu.onClick.AddListener(volverMenu);
+        panelVictoria=GetComponent<GameObject>();
+        panelDerrota=GetComponent<GameObject>();
     }
 
     // Update is called once per frame
@@ -51,5 +73,16 @@ public class ControlleGamePLayUi : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void activarPanelVictoria()
+    {
+        panelVictoria.SetActive(true);
+        Time.timeScale=0.0f;
+        
+    }
+    public void activarPanelDerrota()
+    {
+        panelDerrota.SetActive(false);
+        Time.timeScale=0.0f;
+    }
 
 }
