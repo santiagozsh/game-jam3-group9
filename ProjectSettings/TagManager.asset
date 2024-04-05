@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Objeto_Clickeable
+  - Objeto_Pickeable
+  - GeneralEvent
+  - inventario_con
+  - inventario
+  - slot
   layers:
   - Default
   - TransparentFX
