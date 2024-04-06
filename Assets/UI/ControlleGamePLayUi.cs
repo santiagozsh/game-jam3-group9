@@ -15,8 +15,8 @@ public class ControlleGamePLayUi : MonoBehaviour
     [SerializeField]Button botonPanelDerroReiniciar;
     [SerializeField]Button botonPanelComenzardeNuevo;
     [Header("Paneles")]    
-    [SerializeField]GameObject panelVictoria;
-    [SerializeField]GameObject panelDerrota;
+    public GameObject panelVictoria;
+    public GameObject panelDerrota;
 
 
 
@@ -46,8 +46,12 @@ public class ControlleGamePLayUi : MonoBehaviour
 
         Button botonMenu = botonVolverMenu.GetComponent<Button>();
 		botonMenu.onClick.AddListener(volverMenu);
-        panelVictoria=GetComponent<GameObject>();
-        panelDerrota=GetComponent<GameObject>();
+        panelVictoria=GameObject.Find("Panel Victoria");
+        panelVictoria.SetActive(false);
+
+
+        panelDerrota=GameObject.Find("Panel Derrota");
+        panelDerrota.SetActive(false);
     }
 
     // Update is called once per frame
@@ -71,6 +75,7 @@ public class ControlleGamePLayUi : MonoBehaviour
     void volverMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        Time.timeScale=1.0F;
     }
 
     public void activarPanelVictoria()
@@ -81,7 +86,7 @@ public class ControlleGamePLayUi : MonoBehaviour
     }
     public void activarPanelDerrota()
     {
-        panelDerrota.SetActive(false);
+        panelDerrota.SetActive(true);
         Time.timeScale=0.0f;
     }
 
