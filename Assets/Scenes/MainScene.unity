@@ -11826,6 +11826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 5309335861701671732, guid: fc09fae9fad0c0c449c623a329eac4c1, type: 3}
+  shootCooldown: 1
 --- !u!114 &1263465454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11841,7 +11842,7 @@ MonoBehaviour:
   speed: 8
   jumpForce: 8
   coyoteTime: 1.5
-  canMove: 0
+  canMove: 1
   isDashing: 0
   isJumping: 0
   isFalling: 0
