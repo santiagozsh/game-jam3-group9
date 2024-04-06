@@ -1,4 +1,6 @@
+using Cinemachine;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -119,6 +121,7 @@ public class Movement : MonoBehaviour
     public void Hit()
     {
         anim.SetTrigger("Damage");
+        Camera.main.gameObject.GetComponent<ScreenShake>().ShakeCamera(GetComponent<CinemachineImpulseSource>());
         Health -= 1;
         if (Health == 0) 
         {
