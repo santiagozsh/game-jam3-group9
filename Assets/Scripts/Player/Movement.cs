@@ -20,12 +20,17 @@ public class Movement : MonoBehaviour
     public ParticleSystem dustParticle;
     public GameObject bulletPrefab;
 
+    private ControlleGamePLayUi controlleGamePLayUi;
     private void Start()
     {
+        GameObject uiControllerObject = GameObject.Find("Canvas Game Play");
+
+        controlleGamePLayUi=uiControllerObject.GetComponent<ControlleGamePLayUi>();
         coll = GetComponent<Collision>();
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        
     }
 
     private void Update()
@@ -115,7 +120,12 @@ public class Movement : MonoBehaviour
     {
         anim.SetTrigger("Damage");
         Health -= 1;
-        if (Health == 0) Destroy(gameObject);
+        if (Health == 0) 
+        {
+
+            controlleGamePLayUi.activarPanelDerrota();
+            Destroy(gameObject);
+        }
     }
 
     private void Shoot()
