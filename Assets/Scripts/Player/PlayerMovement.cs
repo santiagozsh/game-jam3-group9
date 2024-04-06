@@ -26,12 +26,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        GameObject uiControllerObject = GameObject.Find("Canvas Game Play");
-        controlleGamePLayUi = uiControllerObject.GetComponent<ControlleGamePLayUi>();
         coll = GetComponent<Collision>();
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        GameObject uiControllerObject = GameObject.Find("Canvas Game Play");
+        controlleGamePLayUi = uiControllerObject.GetComponent<ControlleGamePLayUi>();
     }
 
     private void Update()
@@ -122,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
         if (Health == 0)
         {
             controlleGamePLayUi.activarPanelDerrota();
-            Destroy(gameObject);
+            sprite.enabled = false;
         }
     }
 
