@@ -38,7 +38,7 @@ public class BulletScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         EnemyScript grunt = other.GetComponent<EnemyScript>();
-        Movement john = other.GetComponent<Movement>();
+        PlayerMovement john = other.GetComponent<PlayerMovement>();
         if (grunt != null)
         {
             grunt.Hit();
