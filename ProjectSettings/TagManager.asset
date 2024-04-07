@@ -10,6 +10,7 @@ TagManager:
   - inventario_con
   - inventario
   - slot
+  - PanelMusica
   layers:
   - Default
   - TransparentFX
