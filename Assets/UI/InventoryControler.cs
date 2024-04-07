@@ -51,8 +51,6 @@ public class InventoryControler : MonoBehaviour
                             item.transform.SetParent(child.transform, false);
                             item.transform.localPosition = new Vector3(0, 0, 0);
                             item.name = item.name.Replace("Clone", "");
-                            text = item.GetComponentInChildren<TextMeshProUGUI>();
-                            text.text = "";
                             break;
                         }
                     }
