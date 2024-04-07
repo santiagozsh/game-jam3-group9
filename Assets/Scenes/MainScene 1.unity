@@ -11451,6 +11451,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5602555372854570266, guid: 419e4e112c8817641b78e61abf9f33cf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602555373070633546, guid: 419e4e112c8817641b78e61abf9f33cf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602555373306958485, guid: 419e4e112c8817641b78e61abf9f33cf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602555373668326855, guid: 419e4e112c8817641b78e61abf9f33cf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5602555374555879729, guid: 419e4e112c8817641b78e61abf9f33cf, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -11539,13 +11555,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas Game Play
       objectReference: {fileID: 0}
-    - target: {fileID: 8271642202031680293, guid: 419e4e112c8817641b78e61abf9f33cf, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8271642202031680293, guid: 419e4e112c8817641b78e61abf9f33cf, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
+    - target: {fileID: 5602555374555879733, guid: 419e4e112c8817641b78e61abf9f33cf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 419e4e112c8817641b78e61abf9f33cf, type: 3}
@@ -11932,7 +11944,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72083dc14e33c04fb70bf839602d635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
   speed: 8
   jumpForce: 8
   coyoteTime: 1.5
