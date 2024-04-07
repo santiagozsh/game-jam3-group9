@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer sprite;
     private Animator anim;
     private int Health = 5;
+   // private BarradeVida barraVida;
+    [SerializeField] private int _maxHealth = 5;
 
     public float speed = 8;
     public float jumpForce = 6;
@@ -33,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        //barraVida = FindObjectOfType<BarradeVida>();
         GameObject uiControllerObject = GameObject.Find("Canvas Game Play");
         controlleGamePLayUi = uiControllerObject.GetComponent<ControlleGamePLayUi>();
     }
@@ -129,6 +132,11 @@ public class PlayerMovement : MonoBehaviour
         anim.SetTrigger("Damage");
         Camera.main.gameObject.GetComponent<ScreenShake>().ShakeCamera(GetComponent<CinemachineImpulseSource>());
         Health -= 1;
+       // if (barraVida != null)
+        {
+            int saludActual = Health;
+         //   barraVida.SetHealth(saludActual);
+        }
         if (Health == 0)
         {
             controlleGamePLayUi.activarPanelDerrota();

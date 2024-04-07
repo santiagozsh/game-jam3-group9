@@ -1,48 +1,39 @@
 using TMPro;
 using UnityEngine;
 
-
 public class InventoryControler : MonoBehaviour
 {
     [SerializeField] GameObject[] slots;
     TextMeshProUGUI text;
 
-    private int numeroSlotsMax = 5;
+    private int numeroSlotsMax = 4;
 
     void Start()
     {
         slots = new GameObject[numeroSlotsMax];
     }
 
-    public GameObject[] getSlots()
+    public GameObject[] GetSlots()
     {
         return this.slots;
     }
-    public void setSlot(GameObject slot, int pos, int cant)
+
+    public void SetSlot(GameObject slot)
     {
-        bool exist = false;
         for (int i = 0; i < slots.Length; i++)
         {
-            if (slots[i] != null)
+            if (slots[i] == null)
             {
-                if (slots[i].tag == slot.tag)
-                {
-                    int already_Cant = slots[i].GetComponent<AttributesControler>().getCantidad();
-                    this.slots[i].GetComponent<AttributesControler>().Setcantidad(already_Cant = cant);
-                    exist = true;
-                }
+                this.slots[i] = slot;
+                return;
             }
         }
-        if (!exist)
-        {
-            slot.GetComponent<AttributesControler>().Setcantidad(cant);
-            this.slots[pos] = slot;
-        }
     }
+
+
     public void showInventory()
     {
         Component[] inventario = GameObject.FindGameObjectWithTag("inventario").GetComponentsInChildren<Transform>();
-        bool slotUsed = false;
 
         if (removerItems(inventario))
         {
@@ -50,12 +41,11 @@ public class InventoryControler : MonoBehaviour
             {
                 if (slots[i] != null)
                 {
-                    slotUsed = false;
                     for (int e = 0; e < inventario.Length; e++)
                     {
                         GameObject child = inventario[e].gameObject;
 
-                        if (child.tag == "slot" && child.transform.childCount <= 1 && !slotUsed)
+                        if (child.tag == "slot" && child.transform.childCount <= 1)
                         {
                             GameObject item = Instantiate(slots[i], child.transform.position, Quaternion.identity);
                             item.transform.SetParent(child.transform, false);
@@ -63,15 +53,14 @@ public class InventoryControler : MonoBehaviour
                             item.name = item.name.Replace("Clone", "");
                             text = item.GetComponentInChildren<TextMeshProUGUI>();
                             text.text = "";
-
-                            slotUsed = true;
+                            break;
                         }
                     }
                 }
-
             }
         }
     }
+
     public bool removerItems(Component[] inventario)
     {
         for (int e = 1; e < inventario.Length; e++)
