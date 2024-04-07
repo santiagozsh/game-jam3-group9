@@ -8,9 +8,10 @@ public class PlayerAttack : MonoBehaviour
     private SpriteRenderer sprite;
     public GameObject bulletPrefab;
 
-    public float shootCooldown = 1f; 
+    public float shootCooldown = 1f;
     private float lastShootTime;
 
+    public bool bowPowerUp = false;
     private void Start()
     {
         coll = GetComponent<Collision>();
@@ -25,17 +26,20 @@ public class PlayerAttack : MonoBehaviour
 
     private void HandleAttack()
     {
-        if (Input.GetMouseButtonDown(0) && coll.onGround && Time.time > lastShootTime + shootCooldown)
+        if (bowPowerUp)
         {
-            anim.SetTrigger("Attack");
-            StartCoroutine(DelayForShoot());
-            lastShootTime = Time.time;
+            if (Input.GetMouseButtonDown(0) && coll.onGround && Time.time > lastShootTime + shootCooldown)
+            {
+                anim.SetTrigger("Attack");
+                StartCoroutine(DelayForShoot());
+                lastShootTime = Time.time;
+            }
         }
     }
 
     IEnumerator DelayForShoot()
     {
-        yield return new WaitForSeconds(.5f); 
+        yield return new WaitForSeconds(.5f);
         Shoot();
     }
 

@@ -10,8 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private int Health = 5;
 
     public float speed = 8;
-    public float jumpForce = 8;
-    public float coyoteTime = 1.5f;
+    public float jumpForce = 6;
+    public float coyoteTime = 0.5f;
 
     private float coyoteTimer;
 
@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     public bool isDashing;
     public bool isJumping;
     public bool isFalling;
+
+    private bool canJump = true;
+    public float jumpDelay = 0.5f; 
 
     public ParticleSystem dustParticle;
 
@@ -83,12 +86,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleJump()
     {
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && (coll.onGround || Time.time < coyoteTimer))
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && (coll.onGround || Time.time < coyoteTimer) && canJump)
         {
             Jump(Vector2.up);
             isJumping = true;
             isFalling = false;
+            canJump = false; 
+            Invoke("ResetJump", jumpDelay);
         }
+    }
+
+    private void ResetJump()
+    {
+        canJump = true;
     }
 
     private void Walk(Vector2 dir)
@@ -125,6 +135,5 @@ public class PlayerMovement : MonoBehaviour
             sprite.enabled = false;
         }
     }
-
 
 }
