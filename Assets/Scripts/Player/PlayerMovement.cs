@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
     private int Health = 5;
     private BarradeVida barraVida;
     [SerializeField] private int _maxHealth = 5;
+    [SerializeField] private AudioClip walkSound;
+    [SerializeField] private AudioClip jumpSound;
+    public AudioSource audioSource;
 
     public float speed = 8;
     public float jumpForce = 6;
@@ -23,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isFalling;
 
     private bool canJump = true;
-    public float jumpDelay = 0.5f; 
+    public float jumpDelay = 0.5f;
 
     public ParticleSystem dustParticle;
 
@@ -43,6 +46,15 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Vector2 dir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        if (dir.x == 0 && !isJumping)
+        {
+            AudioManager.InstanceMusic.sfxAudioSource.clip = null;
+            AudioManager.InstanceMusic.sfxAudioSource.Stop();
+        }
+        else if (!AudioManager.InstanceMusic.sfxAudioSource.isPlaying)
+        {
+            AudioManager.InstanceMusic.PlaySound(walkSound);
+        }
         Walk(dir);
         HandleJumpingAndFalling();
         HandleJump();
@@ -94,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
             Jump(Vector2.up);
             isJumping = true;
             isFalling = false;
-            canJump = false; 
+            canJump = false;
             Invoke("ResetJump", jumpDelay);
         }
     }
@@ -108,6 +120,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!canMove)
             return;
+
         rb.velocity = new Vector2(dir.x * speed, rb.velocity.y);
         anim.SetBool("HorizontalMove", dir.x != 0);
     }
@@ -117,6 +130,9 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity += dir * jumpForce;
         dustParticle.Play();
+        AudioManager.InstanceMusic.sfxAudioSource.clip = null;
+        AudioManager.InstanceMusic.sfxAudioSource.Stop();
+        AudioManager.InstanceMusic.PlaySound(jumpSound);
     }
 
     private void HandleFacingDirection(Vector2 dir)
