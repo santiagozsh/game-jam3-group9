@@ -159,5 +159,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 1
-  Sound: {fileID: 0}
+  Sound: {fileID: 8300000, guid: 48cde60d3a3d9412caeaf949b6364160, type: 3}
   LifeTime: 3
