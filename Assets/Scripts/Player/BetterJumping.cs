@@ -6,7 +6,7 @@ public class BetterJumping : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float fallMultiplier = 2.5f;
-    public float lowJumpMultiplier = 2f;
+    public float lowJumpMultiplier = 1.5f;
 
     void Start()
     {
