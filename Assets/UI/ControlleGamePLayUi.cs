@@ -14,6 +14,13 @@ public class ControlleGamePLayUi : MonoBehaviour
     [SerializeField]Button botonPanelVictoriaVolverMenu;
     [SerializeField]Button botonPanelDerroReiniciar;
     [SerializeField]Button botonPanelComenzardeNuevo;
+
+    [SerializeField]Button botonPausaMusica;
+    [SerializeField]Button botonVolverMusica;
+
+    [SerializeField]Button botonPausaControles;
+    [SerializeField]Button botonVolverControles;
+
     [Header("Paneles")]    
     public GameObject panelVictoria;
     public GameObject panelDerrota;
@@ -41,6 +48,16 @@ public class ControlleGamePLayUi : MonoBehaviour
 		elementobotonPanelDerroReiniciar.onClick.AddListener(ReiniciarJuego);
         Button elementobotonPanelComenzardeNuevo = botonPanelComenzardeNuevo.GetComponent<Button>();
 		elementobotonPanelComenzardeNuevo.onClick.AddListener(volverMenu);
+
+        Button elementobotonPausaMusica=botonPausaMusica.GetComponent<Button>();
+        elementobotonPausaMusica.onClick.AddListener(PausarJuego);
+        Button elementobotonVolverMusica=botonVolverMusica.GetComponent<Button>();
+        elementobotonVolverMusica.onClick.AddListener(ContinuarJuego);
+
+        Button elementobotonPausaControles=botonPausaControles.GetComponent<Button>();
+        elementobotonPausaControles.onClick.AddListener(PausarJuego);
+        Button elementobotonVolverControles=botonVolverMusica.GetComponent<Button>();
+        elementobotonVolverControles.onClick.AddListener(ContinuarJuego);
 
         
 
