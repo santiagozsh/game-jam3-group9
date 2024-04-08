@@ -1,4 +1,5 @@
 using Cinemachine;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -21,12 +22,18 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteTimer;
 
     public bool canMove;
-    public bool isDashing;
     public bool isJumping;
     public bool isFalling;
 
     private bool canJump = true;
+    public bool canDash = false;
     public float jumpDelay = 0.5f;
+
+    public float dashForce = 10f;
+    public float dashDuration = 0.2f;
+    public float dashDelay = 1f;
+    private bool isDashing = false;
+    private bool onDashDelay = false;
 
     public ParticleSystem dustParticle;
 
@@ -51,9 +58,17 @@ public class PlayerMovement : MonoBehaviour
             AudioManager.InstanceMusic.sfxAudioSource.clip = null;
             AudioManager.InstanceMusic.sfxAudioSource.Stop();
         }
-        else if (!AudioManager.InstanceMusic.sfxAudioSource.isPlaying)
+        else if (!AudioManager.InstanceMusic.sfxAudioSource.isPlaying && coll.onGround)
         {
             AudioManager.InstanceMusic.PlaySound(walkSound);
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && canDash && !onDashDelay)
+        {
+            StartDash(dir);
+            onDashDelay =  true;
+            Invoke("ResetDash", dashDelay);
+
         }
         Walk(dir);
         HandleJumpingAndFalling();
@@ -68,6 +83,30 @@ public class PlayerMovement : MonoBehaviour
         {
             HandleJumpingAndFalling();
         }
+    }
+
+    private void StartDash(Vector2 dir)
+    {
+        if (!canMove)
+            return;
+
+        isDashing = true;
+        StartCoroutine(PerformDash(dir));
+    }
+
+    private IEnumerator PerformDash(Vector2 dir)
+    {
+        float startTime = Time.time;
+        rb.velocity = Vector2.zero;
+
+        while (Time.time < startTime + dashDuration)
+        {
+            rb.velocity = dir * dashForce;
+            yield return null;
+        }
+
+        rb.velocity = Vector2.zero;
+        isDashing = false;
     }
 
     private void HandleJumpingAndFalling()
@@ -114,6 +153,11 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         canJump = true;
+    }
+
+    private void ResetDash()
+    {
+        onDashDelay = false;
     }
 
     private void Walk(Vector2 dir)

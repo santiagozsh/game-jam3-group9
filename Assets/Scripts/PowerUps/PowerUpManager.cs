@@ -27,5 +27,13 @@ public class PowerUpManager : MonoBehaviour
         {
             player.GetComponent<PlayerMovement>().jumpDelay = 0.2f;
         }
+        if (powerUp.name == "Dash")
+        {
+            player.GetComponent<PlayerMovement>().canDash =true;
+        }
+        if (powerUp.name == "JumpAttack")
+        {
+            player.GetComponent<PlayerAttack>().canAttackOnAir = true;
+        }
     }
 }

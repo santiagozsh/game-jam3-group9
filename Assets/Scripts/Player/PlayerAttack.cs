@@ -10,6 +10,7 @@ public class PlayerAttack : MonoBehaviour
 
     public float shootCooldown = 1f;
     private float lastShootTime;
+    public bool canAttackOnAir;
 
     public bool bowPowerUp = false;
     private void Start()
@@ -26,9 +27,18 @@ public class PlayerAttack : MonoBehaviour
 
     private void HandleAttack()
     {
-        if (bowPowerUp)
+        if (bowPowerUp && !canAttackOnAir)
         {
             if (Input.GetMouseButtonDown(0) && coll.onGround && Time.time > lastShootTime + shootCooldown)
+            {
+                anim.SetTrigger("Attack");
+                StartCoroutine(DelayForShoot());
+                lastShootTime = Time.time;
+            }
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(0) && Time.time > lastShootTime + shootCooldown)
             {
                 anim.SetTrigger("Attack");
                 StartCoroutine(DelayForShoot());
