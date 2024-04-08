@@ -56,7 +56,8 @@ public class ControlleGamePLayUi : MonoBehaviour
 
         Button elementobotonPausaControles=botonPausaControles.GetComponent<Button>();
         elementobotonPausaControles.onClick.AddListener(PausarJuego);
-        Button elementobotonVolverControles=botonVolverMusica.GetComponent<Button>();
+
+        Button elementobotonVolverControles=botonVolverControles.GetComponent<Button>();
         elementobotonVolverControles.onClick.AddListener(ContinuarJuego);
 
         
