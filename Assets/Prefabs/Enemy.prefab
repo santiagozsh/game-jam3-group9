@@ -119,7 +119,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.005750835, y: -0.03082653}
@@ -140,6 +140,7 @@ MonoBehaviour:
   target: {fileID: 0}
   bulletPrefab: {fileID: 8359326248294614455, guid: 55e98c257a3754c4fbb6232d89349740, type: 3}
   animator: {fileID: 0}
+  damageSound: {fileID: 8300000, guid: 88e91cdf15e743c4b976f9fca077930a, type: 3}
 --- !u!95 &3112070132140177071
 Animator:
   serializedVersion: 5

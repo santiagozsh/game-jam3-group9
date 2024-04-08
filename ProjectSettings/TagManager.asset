@@ -11,6 +11,8 @@ TagManager:
   - inventario
   - slot
   - PanelMusica
+  - PowerUp
+  - Panel
   layers:
   - Default
   - TransparentFX

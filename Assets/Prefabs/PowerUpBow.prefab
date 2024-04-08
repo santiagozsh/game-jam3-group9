@@ -129,12 +129,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 4
 --- !u!114 &654202137635050187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +148,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUp: {fileID: 11400000, guid: 096db8b763fdbf140a709168122bec94, type: 2}
+  pickSound: {fileID: 8300000, guid: 6e9bf4de81ec2da4dba67a8577635794, type: 3}
+  amplitud: 0.1
+  velocidad: 1
 --- !u!114 &2102604932487203791
 MonoBehaviour:
   m_ObjectHideFlags: 0

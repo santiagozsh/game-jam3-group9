@@ -13,6 +13,7 @@ public class PlayerAttack : MonoBehaviour
     public bool canAttackOnAir;
 
     public bool bowPowerUp = false;
+    public AudioClip attack;
     private void Start()
     {
         coll = GetComponent<Collision>();
@@ -27,18 +28,15 @@ public class PlayerAttack : MonoBehaviour
 
     private void HandleAttack()
     {
-        if (bowPowerUp && !canAttackOnAir)
+        if (bowPowerUp)
         {
-            if (Input.GetMouseButtonDown(0) && coll.onGround && Time.time > lastShootTime + shootCooldown)
+            if (Input.GetMouseButtonDown(0) && coll.onGround && Time.time > lastShootTime + shootCooldown && !canAttackOnAir)
             {
                 anim.SetTrigger("Attack");
                 StartCoroutine(DelayForShoot());
                 lastShootTime = Time.time;
             }
-        }
-        else
-        {
-            if (Input.GetMouseButtonDown(0) && Time.time > lastShootTime + shootCooldown)
+            else if (Input.GetMouseButtonDown(0) && Time.time > lastShootTime + shootCooldown && canAttackOnAir)
             {
                 anim.SetTrigger("Attack");
                 StartCoroutine(DelayForShoot());

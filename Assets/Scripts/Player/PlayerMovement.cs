@@ -8,11 +8,13 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
     private Animator anim;
-    private int Health = 5;
+    private int Health = 10;
     private BarradeVida barraVida;
-    [SerializeField] private int _maxHealth = 5;
+    [SerializeField] private int _maxHealth = 10;
     [SerializeField] private AudioClip walkSound;
+    [SerializeField] private AudioClip dashSound;
     [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip damageSound;
     public AudioSource audioSource;
 
     public float speed = 8;
@@ -98,7 +100,9 @@ public class PlayerMovement : MonoBehaviour
     {
         float startTime = Time.time;
         rb.velocity = Vector2.zero;
-
+        AudioManager.InstanceMusic.sfxAudioSource.clip = null;
+        AudioManager.InstanceMusic.sfxAudioSource.Stop();
+        AudioManager.InstanceMusic.PlaySound(dashSound);
         while (Time.time < startTime + dashDuration)
         {
             rb.velocity = dir * dashForce;
@@ -194,6 +198,9 @@ public class PlayerMovement : MonoBehaviour
         Health -= 1;
         if (barraVida != null)
         {
+            AudioManager.InstanceMusic.sfxAudioSource.clip = null;
+            AudioManager.InstanceMusic.sfxAudioSource.Stop();
+            AudioManager.InstanceMusic.PlaySound(damageSound);
             int saludActual = Health;
             barraVida.SetHealth(saludActual);
         }

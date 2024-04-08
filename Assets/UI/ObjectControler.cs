@@ -6,6 +6,9 @@ public class ObjectControler : MonoBehaviour
 {
     [SerializeField] GameObject Object;
 
+
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
@@ -23,4 +26,5 @@ public class ObjectControler : MonoBehaviour
             }
         }
     }
+
 }

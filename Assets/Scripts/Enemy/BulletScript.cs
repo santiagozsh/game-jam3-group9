@@ -14,7 +14,11 @@ public class BulletScript : MonoBehaviour
     private void Start()
     {
         Rigidbody2D = GetComponent<Rigidbody2D>();
-        Camera.main.GetComponent<AudioSource>().PlayOneShot(Sound);
+        if (Sound) 
+        { 
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(Sound);
+        }
+        
 
         // Inicia el temporizador para destruir la bala si no colisiona con nada
         StartCoroutine(DestroyAfterDelay());

@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 1
-  Sound: {fileID: 0}
+  Sound: {fileID: 8300000, guid: 9750e272099a3f344903c02b55e67393, type: 3}
   LifeTime: 3
 --- !u!50 &7758849731016032181
 Rigidbody2D:
